@@ -1,0 +1,30 @@
+#!/bin/bash
+
+github_profile="$1"
+
+if [[ -z "$github_profile" ]]; then
+    echo "Please specify your github profile (e.g. https://github.com/<profile>/)"
+    exit 0
+fi
+
+echo ""
+date
+
+# Get resources
+res="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"/*
+
+# For each repo, do the mirroring
+for dir in $res; do
+    if [ -d $dir ]; then
+        echo ""
+        echo "********"
+        echo "Checking" $dir
+        echo "********"
+        cd $dir
+        git reset --hard HEAD
+        git pull
+        repo_name=$(basename $dir)
+        git push --prune git@github.com:"$github_profile"/"$repo_name".git \
+            +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+    fi
+done
