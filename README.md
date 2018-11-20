@@ -7,4 +7,5 @@ This script can be used to mirror any kind of git repository to your GitHub prof
 2. Clone your target repository in the current folder.
 3. On your GitHub profile, create a repository with the same name as the target repository.
 4. Run `./update-all <GitHub profile name>`
+5. Repeat whenever you need to update the mirror.
 
