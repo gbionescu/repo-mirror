@@ -3,7 +3,7 @@
 github_profile="$1"
 
 if [[ -z "$github_profile" ]]; then
-    echo "Please specify your github profile (e.g. https://github.com/<profile>/)"
+    echo "Please specify your github profile (e.g. ./update-all <profile_name>)"
     exit 0
 fi
 
